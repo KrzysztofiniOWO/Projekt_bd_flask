@@ -7,7 +7,7 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy import text
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:jp2gmd2137@localhost/your_database_name'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/kebAPPka'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key'
 
@@ -40,11 +40,22 @@ def execute_sql_query(sql, values=None, fetchone=False, commit=False):
         connection.close()
 
 
-def insert_user(username, email, phone_number, password, authentication_type, newsletter, accept_terms, consent_processing_data):
+def insert_email_verification(email):
     sql = (
-        "INSERT INTO user "
-        "(username, email, phone_number, password, authentication_type, newsletter, accept_terms, consent_processing_data) "
-        "VALUES (:username, :email, :phone_number, :password, :authentication_type, :newsletter, :accept_terms, :consent_processing_data)"
+        "INSERT INTO email_verification (email, verification_code, code_expiry_time, verification_link, link_expiry_time, created_at)"
+        "VALUES (:email, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
+    )
+    values = {
+        'email': email,
+    }
+    execute_sql_query(sql, values, commit=True)
+
+
+def insert_user(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent):
+    sql = (
+        "INSERT INTO users"
+        "(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent, created_at)"
+        "VALUES (:username, :email, :phone_number, :password, :authentication_type, :terms_of_service_consent, :newsletter_consent, :location_processing_consent, NOW())"
     )
     values = {
         'username': username,
@@ -52,9 +63,9 @@ def insert_user(username, email, phone_number, password, authentication_type, ne
         'phone_number': phone_number,
         'password': password,
         'authentication_type': authentication_type,
-        'newsletter': newsletter,
-        'accept_terms': accept_terms,
-        'consent_processing_data': consent_processing_data
+        'terms_of_service_consent': terms_of_service_consent,
+        'newsletter_consent': newsletter_consent,
+        'location_processing_consent': location_processing_consent
     }
     execute_sql_query(sql, values, commit=True)
 
@@ -64,10 +75,10 @@ class RegistrationForm(FlaskForm):
     phone_number = StringField('Phone Number', validators=[InputRequired(), Length(min=1, max=20)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=6, max=60)])
     confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match')])
-    authentication_type = SelectField('Authentication Type', choices=[('email', 'Email'), ('phone', 'Phone')], validators=[InputRequired()])
-    newsletter = BooleanField('I want to receive Newsletter')
-    accept_terms = BooleanField('I accept Terms of Service')
-    consent_processing_data = BooleanField('I consent to processing my data')
+    authentication_type = SelectField('Second Authentication Type', choices=[('second_email', 'Support email'), ('phone', 'SMS code'), ('authy_app', 'Authy application')], validators=[InputRequired()])
+    terms_of_service_consent = BooleanField('I accept the Terms of Service.')
+    newsletter_consent = BooleanField('I want to receive the Newsletter.')
+    location_processing_consent = BooleanField('I consent to the processing of my location data to find the nearest kebab places.')
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -84,6 +95,8 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+        insert_email_verification(form.email.data)
+
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         insert_user(
             form.username.data,
@@ -91,12 +104,12 @@ def register():
             form.phone_number.data,
             hashed_password,
             form.authentication_type.data,
-            form.newsletter.data,
-            form.accept_terms.data,
-            form.consent_processing_data.data
+            form.terms_of_service_consent.data,
+            form.newsletter_consent.data,
+            form.location_processing_consent.data
         )
         flash('Your account has been created! You can now log in.', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     return render_template('register.html', form=form)
 
