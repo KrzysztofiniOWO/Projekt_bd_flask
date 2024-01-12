@@ -1,53 +1,65 @@
 from flask import Flask, render_template, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_bcrypt import Bcrypt
-from sqlalchemy import text
+import mysql.connector
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/kebAPPka'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_DB'] = 'kebAPPka'
+#app.config['MYSQL_DATABASE_PORT'] = 3306
+app.config['SECRET_KEY'] = 'bardzo_tajny_klucz'
 
-db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
+def get_db_connection():
+    return mysql.connector.connect(
+        host = app.config['MYSQL_DATABASE_HOST'],
+        user = app.config['MYSQL_DATABASE_USER'],
+        password = app.config['MYSQL_DATABASE_PASSWORD'],
+        database = app.config['MYSQL_DATABASE_DB'],
+        #port = app.config['MYSQL_DATABASE_PORT']
+    )
+
 def execute_sql_query(sql, values=None, fetchone=False, commit=False):
-    connection = db.engine.connect()
+    #connection = db.engine.connect()
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
     try:
-        if values is None:
-            result = connection.execute(text(sql))
-        elif isinstance(values, (tuple, list)):
-            # Handle both a single tuple and a list
-            if len(values) == 1:
-                result = connection.execute(text(sql), values[0])
-            else:
-                result = connection.execute(text(sql), *values)
-        elif isinstance(values, dict):
-            # Use parameter binding here
-            result = connection.execute(text(sql), values)
+        if values:
+            cursor.execute(sql, values)
         else:
-            raise ValueError("Values must be either a tuple, a list, or a dictionary")
+            cursor.execute(sql)
+
+        # Sprawdź, czy zapytanie jest typu SELECT
+        if cursor.description:
+            if fetchone:
+                result = cursor.fetchone()
+            else:
+                result = cursor.fetchall()
+        else:
+            result = None
 
         if commit:
             connection.commit()
 
-        if fetchone:
-            return result.fetchone()
+        return result
     finally:
+        cursor.close()
         connection.close()
-
 
 def insert_email_verification(email):
     sql = (
         "INSERT INTO email_verification (email, verification_code, code_expiry_time, verification_link, link_expiry_time, created_at)"
-        "VALUES (:email, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
+        "VALUES (%s, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
     )
-    values = {
-        'email': email,
-    }
+    values = (
+        email,
+    )
     execute_sql_query(sql, values, commit=True)
 
 
@@ -55,18 +67,13 @@ def insert_user(username, email, phone_number, password, authentication_type, te
     sql = (
         "INSERT INTO users"
         "(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent, created_at)"
-        "VALUES (:username, :email, :phone_number, :password, :authentication_type, :terms_of_service_consent, :newsletter_consent, :location_processing_consent, NOW())"
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())"
     )
-    values = {
-        'username': username,
-        'email': email,
-        'phone_number': phone_number,
-        'password': password,
-        'authentication_type': authentication_type,
-        'terms_of_service_consent': terms_of_service_consent,
-        'newsletter_consent': newsletter_consent,
-        'location_processing_consent': location_processing_consent
-    }
+    values = (
+        username, email, phone_number, password, 
+        authentication_type, terms_of_service_consent, 
+        newsletter_consent, location_processing_consent
+    )
     execute_sql_query(sql, values, commit=True)
 
 class RegistrationForm(FlaskForm):
