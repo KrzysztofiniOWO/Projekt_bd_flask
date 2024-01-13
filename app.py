@@ -22,6 +22,11 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+        # Dodaj sprawdzanie czy pole 'Confirm Password' jest takie samo jak 'Password'
+        if form.password.data != form.confirm_password.data:
+            flash('Passwords must match. Please try again.', 'danger')
+            return render_template('register.html', form=form)
+
         insert_email_verification(form.email.data)
 
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
