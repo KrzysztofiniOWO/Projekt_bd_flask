@@ -35,8 +35,6 @@ def register():
             flash('Phone number is already registered. Please use a different phone number.', 'danger')
             return render_template('register.html', form=form)
 
-        print("Before insert_user")
-
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         insert_user(
             form.username.data,
@@ -49,14 +47,8 @@ def register():
             form.location_processing_consent.data
         )
 
-        print("After insert_user")
-
         flash('Your account has been created! You can now log in.', 'success')
         return redirect(url_for('index'))
-
-    print(form.username.errors)
-    print(form.email.errors)
-    print(form.phone_number.errors)
 
     return render_template('register.html', form=form)
 
