@@ -49,6 +49,11 @@
                 <div class="register-field">
                     {{ form.password.label }}
                     {{ form.password(placeholder='Hasło', class='form-control') }}
+                    {% if form.password.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.password.errors[0] }}
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="register-field">
