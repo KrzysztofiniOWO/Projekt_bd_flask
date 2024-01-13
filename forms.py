@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
+from helpers import is_username_available, is_email_available, is_phone_number_available
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
@@ -14,6 +15,18 @@ class RegistrationForm(FlaskForm):
     location_processing_consent = BooleanField('I consent to the processing of my location data to find the nearest kebab places.')
     submit = SubmitField('Sign Up')
 
+    def validate_username(self, username):
+        if not is_username_available(username.data):
+            raise ValidationError('This username is already taken. Please choose another one.')
+
+    def validate_email(self, email):
+        if not is_email_available(email.data):
+            raise ValidationError('This email is already registered. Please use a different email.')
+
+    def validate_phone_number(self, phone_number):
+        if not is_phone_number_available(phone_number.data):
+            raise ValidationError('This phone number is already registered. Please use a different phone number.')
+        
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=6, max=60)])
