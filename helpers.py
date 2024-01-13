@@ -53,14 +53,59 @@ def insert_email_verification(email):
     execute_sql_query(sql, values, commit=True)
 
 def insert_user(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent):
-    sql = (
+    sql_insert_email_verification = (
+        "INSERT INTO email_verification (email, verification_code, code_expiry_time, verification_link, link_expiry_time, created_at)"
+        "VALUES (%s, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
+    )
+    values_insert_email_verification = (
+        email,
+    )
+
+    sql_insert_user = (
         "INSERT INTO users"
         "(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent, created_at)"
         "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())"
     )
-    values = (
+    values_insert_user = (
         username, email, phone_number, password,
         authentication_type, terms_of_service_consent,
         newsletter_consent, location_processing_consent
     )
-    execute_sql_query(sql, values, commit=True)
+
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    try:
+        # Wstawienie do tabeli email_verification
+        cursor.execute(sql_insert_email_verification, values_insert_email_verification)
+        connection.commit()
+        print("Email verification inserted successfully")
+
+        # Wstawienie do tabeli users
+        cursor.execute(sql_insert_user, values_insert_user)
+        connection.commit()
+        print("User inserted successfully")
+
+    except Exception as e:
+        print(f"Error inserting user: {e}")
+    finally:
+        cursor.close()
+        connection.close()
+
+def is_username_available(username):
+    sql = "SELECT 1 FROM users WHERE username = %s"
+    values = (username,)
+    result = execute_sql_query(sql, values, fetchone=True)
+    return result is None
+
+def is_email_available(email):
+    sql = "SELECT 1 FROM users WHERE email = %s"
+    values = (email,)
+    result = execute_sql_query(sql, values, fetchone=True)
+    return result is None
+
+def is_phone_number_available(phone_number):
+    sql = "SELECT 1 FROM users WHERE phone_number = %s"
+    values = (phone_number,)
+    result = execute_sql_query(sql, values, fetchone=True)
+    return result is None
