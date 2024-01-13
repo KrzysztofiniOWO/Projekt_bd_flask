@@ -39,6 +39,11 @@
                 <div class="register-field">
                     {{ form.confirm_password.label }}
                     {{ form.confirm_password(placeholder='Powtórz hasło', class='form-control') }}
+                    {% if form.confirm_password.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.confirm_password.errors[0] }}
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="register-field">
