@@ -1,6 +1,7 @@
 import mysql.connector
 from flask import current_app
 from flask_bcrypt import Bcrypt
+import re  # Dodane
 
 bcrypt = Bcrypt()
 
@@ -109,3 +110,7 @@ def is_phone_number_available(phone_number):
     values = (phone_number,)
     result = execute_sql_query(sql, values, fetchone=True)
     return result is None
+
+# Dodane
+def is_valid_email(email):
+    return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)

@@ -5,9 +5,13 @@ from helpers import is_username_available, is_email_available, is_phone_number_a
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
-    email = StringField('Email', validators=[InputRequired(), Length(max=120)])
+    email = StringField('Email', validators=[
+        InputRequired(),
+        Length(max=120),
+        Regexp(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', message='Invalid email address')
+    ])
     phone_number = StringField('Phone Number', validators=[InputRequired(), Length(min=1, max=20)])
-    
+
     password_policy_message = "Password must be at least 8 characters long, and contain at least one lowercase letter, one uppercase letter, one digit, and one special character"
 
     password = PasswordField('Password', validators=[
@@ -47,6 +51,7 @@ class RegistrationForm(FlaskForm):
     def validate_phone_number(self, phone_number):
         if not is_phone_number_available(phone_number.data):
             raise ValidationError('This phone number is already registered. Please use a different phone number.')
+
         
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
