@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppings:wght@500display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@600&display=swap');
+
+* { /*style globalne */ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body { /* styl body */ 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f2f2f2;
+}
+
+.wrapper { /* styl searchbara */
+    flex-grow: 1; 
+    max-width: 850px; 
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 7px;
+    padding: 10px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+
+}
+
+.search-and-logo-container {
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 90px; 
+    margin-top: 180px; 
+}
+
+.promo-text {
+    position: absolute;
+    left: 0; 
+    top: 20px; 
+    width: 100%; 
+    padding-left: 200px; 
+    text-align: left; 
+}
+
+.hungry {
+    font-weight: bold;
+    font-size: 36px; 
+    margin: 0 0 10px 0; 
+    padding-left: 210px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #ee5a5b; 
+    font-size: 28px;
+}
+
+.order-now {
+    font-size: 18px; 
+    margin: 0; 
+}
+
+.logo2 {
+    height: 350px;
+    margin-left: 300px; 
+}
+
+input { /* to co jest wpisane w searchbara */
+    width: 100%;
+    height: 100%;
+    color: #271212;
+    font-size: 20px; 
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+i { /* ikonka lupki w searchbarze */
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+}
+
+li, button { /* styl list i przyciskow */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+a { /* styl hiperlaczy */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+}
+
+header { /* czesc naglowkowa */
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    position: sticky;
+    top: 0;
+    background: #aa3939;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+
+footer { /* czesc stopki */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 5%;
+    position: sticky;
+    top: 0;
+    background: #bf7677;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    margin-top: auto;
+}
+
+.logo { /* logo */
+    height: 120px; 
+    width: auto;
+    margin-left: 20px;
+}
+
+button { /* przyciski (zaloguj, zarejestuj) */
+    padding: 9px 25px;
+    background-color: #550000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover{ /* zmiana koloru po najechaniu kursorem*/
+    background-color: #d46a6a;
+}
+
+.button_container { /* konterener na przyciski */
+    display: flex;
+    align-items: center;
+}
+
+.cta { /* call to action przyciski*/
+    margin-right: 5px;
+}
+
+.cta:last-child { /* ostatni eelement w grupie cta*/
+    margin-left: 20px;
+}
+
+.log_in { /* zaloguj sie */
+    background-color: #ffa9aa;
+    color: #090606;
+}
+
+.website_name { /* nazwa strony kebAPPka */
+    margin-left: 5px;
+    font-size: 30px;
+    color: #feaaaa;
+    font-family: 'Merienda', cursive;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+}
+
+.box-container { /* kontener na trzy kwadraty na dole */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.box { /* kwadraty na dole */
+    width: 200px;
+    height: 100px; 
+    background-color: #f6f6f6; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); 
+    margin: 0 10px;
+}
+
+
+/*                                                       zarejestruj_sie.html                                                                                  */
+
+.register_header { /* naglowek */
+    padding: 5px 10%;
+    background-color: #ab3939;
+    width: 100%;
+    min-height: 40px;
+}
+
+.register_footer { /* stopka */
+    padding: 20px 10%;
+    background-color: #bf7778;
+    width: 100%;
+    min-height: 30px;
+}
+
+.calosc { /* cale duze pole rejestracji */
+    max-width: 700px; 
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.register-box { /* poszczegolne pola do rejestracji */
+    display: flex;
+    flex-direction: column;
+    gap: 7px; 
+    width: 80%;
+    margin: auto;
+}
+
+.register-field input { /* teksty w polach */
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    margin-top: 2px;
+    font-size: 15px;
+}
+
+form h1 { /* nie pamietam co to */
+    text-align: center;
+    color: #271212; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.checkbox_group { /* checkboxy, grupa */
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox_item { /* checkboxy */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+.checkbox_item label { /* podpisy przy checkboxach */
+    flex-grow: 1;
+    font-size: 13px;
+}
+
+.submit-container { /* kontener na przyciski */
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+}
+
+.submit-button { /* przycisk "zarejestuj sie" */
+    padding: 10px 20px;
+    background-color: #550000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover { /* animacja przycisku "zarejestruj sie" */
+    background-color: #d46a6a;
+}
+
+.register_header { /* czcionka i tekst w naglowku strony */
+    text-align: center;
+    margin-left: 5px;
+    font-size: 24px;
+    color: #feaaaa;
+    font-family: 'Merienda', cursive;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.submit-container hr { /* linia po przycisku "zarejestruj sie" */
+    border: none;
+    height: 0.5px;
+    background-color: #333;
+    width: 100%; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.federational_buttons { /* przyciski logowania federacyjnego */
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.social_button_facebook { /* przycisk "Zarejestruj sie przez Facebook" */
+    padding: 10px 20px;
+    background-color:#f6f6f6; 
+    color: black;
+    border: 1px solid #919191;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.social_button_facebook:hover { /* animacja przycisku "Zarejestruj sie przez Facebook" */
+    background-color: #1877F2;
+    color: white;
+}
+
+.social_button_google { /* przycisk "Zarejestruj sie przez Google" */
+    padding: 10px 20px;
+    background-color: #f6f6f6;
+    color: black;
+    border: 1px solid #919191;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; 
+}
+
+.social_button_google:hover { /* animacja przycisku "Zarejestruj się przez Google" */
+    background-color: #DB4437;
+    color: white;
+}
+
+.federational_buttons img.button_logo { /* rozmiar logo przy przyciskach do logowania federacyjnego */
+    height: 20px; 
+    width: auto; 
+    margin-right: 5px; 
+}
+
+.register-field select { /* styl pola do wyboru typu autoryzacji */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 2px;
+    font-size: 16px;
+    background-color: white;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none; 
+}
+
+
+
+/*                                                       login.html                                                                                  */
+.login_header {
+    font-family: 'Merienda', cursive;
+    padding: 5px 10%;
+    background-color: #ab3939;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    font-size: 24px;
+    color: #feaaaa;
+    font-family: 'Merienda', cursive;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px; 
+    width: 80%;
+    margin: auto;
+}
+
+.login-field input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    margin-top: 2px;
+    font-size: 15px;
+}
+
+.login-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f2f2f2 url('tlo-kebaby.png') no-repeat center center;
+    background-size: cover;
+}
