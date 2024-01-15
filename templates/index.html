@@ -7,7 +7,6 @@
         <title>kebAPPka</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
     </head>
 
     <body>
@@ -15,14 +14,24 @@
             <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="logo">
             <span class="website_name">kebAPPka</span>
             <div class="button_container">
-                <a class="cta" href="#"><button class="log_in">ZALOGUJ SIĘ</button></a>
+                <a class="cta" href="{{ url_for('login') }}"><button class="log_in">ZALOGUJ SIĘ</button></a>
                 <a class="cta" href="{{ url_for('register') }}"><button class="register">ZAREJESTRUJ SIĘ</button></a>
             </div>
 
         </header>
-        <div class="wrapper">
-            <input type="text" placeholder="Wpisz szukaną frazę...">
-            <i class="fa-solid fa-magnifying-glass"></i>
+
+        <div class="search-and-logo-container">
+
+            <div class="promo-text">
+                <p class="hungry">Głodny?</p>
+                <p class="order-now">Nie czekaj na okazję, zamów już teraz najlepszego <span class="highlight">kebsa</span> w okolicy.</p>
+            </div>
+            
+            <div class="wrapper">
+                <input type="text" placeholder="Znajdź swojego idealnego kebaba na podstawie wrocławskiej dzielnicy...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <img class="logo2" src="{{ url_for('static', filename='logo2.png') }}" alt="logo">
         </div>
         
         <footer>
@@ -34,3 +43,4 @@
         </footer>
     </body>
 </html>
+
