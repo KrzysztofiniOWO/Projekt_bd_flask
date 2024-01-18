@@ -373,6 +373,14 @@ form h1 { /* nie pamietam co to */
     appearance: none; 
 }
 
+.register-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: #f2f2f2 url('tlo-kebaby.png') no-repeat center center;
+        background-size: cover;
+    
+}
 
 
 /*                                                       login.html                                                                                  */
@@ -421,3 +429,339 @@ form h1 { /* nie pamietam co to */
     background: #f2f2f2 url('tlo-kebaby.png') no-repeat center center;
     background-size: cover;
 }
+
+/*                                                                           lokale.html                                                                     */
+
+.controls-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.search-container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This will position the button and sorting options on opposite ends */
+    padding: 20px 10%; /* Adjust padding as needed */
+    max-width: 100%;
+}
+
+
+.lokale_header {
+    font-family: 'Merienda', cursive;
+    padding: 5px 10%;
+    background-color: #ab3939;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    font-size: 30px;
+    color: #feaaaa;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.district-change-container {
+    position: absolute; 
+    left: 50%; 
+    bottom: -20px; 
+    width: max-content; 
+}
+
+.district-change-btn {
+    padding: 8px 16px;
+    /*margin-top: 2px;
+    margin-bottom: 10px;*/
+    margin: 0 auto;
+}
+
+.food-search {
+    display: block;
+    max-width: 1000px;
+    width: calc(100% - 32px);
+    height: 50px;
+    padding: 4px 16px;
+    margin: 30px auto;
+    border: 1px solid #C5C5C5; 
+    background-color: #fff; 
+    border-radius: 15px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    font-size: 16px; 
+    outline: none;
+}
+
+
+.sort-label {
+    margin-right: 10px; 
+    font-size: 16px;
+    margin: 0;
+}
+
+.sorting-options {
+    padding: 8px 16px;
+    margin-top: 10px; 
+    border: 1px solid #000; 
+    border-radius: 5px; 
+    background: #fff; 
+    font-size: 16px; 
+    cursor: pointer; 
+    width: auto;
+}
+
+.sorting-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex: 1;
+}
+
+/*.spacer {
+    display: none;
+}*/
+
+.search-results-label {
+    text-align: center;
+    font-size: 20px; 
+    margin-top: 20px; 
+    color: #333; 
+}
+
+.angled-rectangle-lokale {
+    position: fixed;
+    left: 60px;
+    top: 305px; /* Adjust this value to not overlap the header */
+    width: 230px;
+    min-height: 400px;
+    background: #FFEDED;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-radius: 15px;
+}
+
+.filtruj-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.konkretny-lokal {
+    position: fixed;
+    top: 305px; /* Adjust so it doesn't overlap with .angled-rectangle-lokale */
+    left: calc(50% - 30%); /* Adjust this value to center the block */
+    width: 60%;
+    height: 100px;
+    background-color: #CB9494;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+    border-radius: 10px;
+}
+
+.centered-text-lokal {
+    position: absolute;
+    top: 20px;
+    left: 55px;
+    color: #333;
+    font-size: 22px;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: fixed;
+    background: #f2f2f2;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /*margin-top: 360px;*/
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd; 
+    margin: 0 4px; 
+}
+
+.pagination a.active {
+    background-color: #aa3939;
+    color: white;
+    border: 1px solid #aa3939;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+/*                                                                  szczegoly_lokalu.html                                    */
+
+.angled-rectangle-szczegoly {
+    min-height: 100px;
+    width: 40%;
+    background-color: #F5F5F5;
+    margin: 30px auto;
+    margin-bottom: 10px;
+    position: fixed; /* This will make the rectangle and its contents fixed on the screen */
+    top: 50px; /* Adjust this value so the rectangle appears below the header */
+    left: 50%; /* Center the rectangle */
+    transform: translateX(-50%); /* Adjust horizontal centering due to the fixed positioning */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    z-index: 5; /* Make sure it's above other content but below any modals or popups */
+}
+
+.ocena-lokale-szczegoly,
+.promocje-lokale-szczegoly,
+.recenzje-lokale-szczegoly {
+    margin-left: 20px; /* Move text to the right */
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nasze-menu-lokale-szczegoly {
+    position: fixed; /* Make NASZE MENU fixed */
+    top: 180px; /* Adjust this value so it appears right below the .angled-rectangle-szczegoly */
+    left: 200px; /* Keep your left margin */
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 5; /* Ensures it stays on top of other content */
+}
+
+.angled-rectangle-szczegoly2 {
+    position: fixed; /* Fixed positioning relative to the viewport */
+    top: calc(90px + 100px + 20px); /* Below the first fixed rectangle; adjust this value as needed */
+    left: 50%; /* Center the element */
+    transform: translateX(-50%); /* Adjust for the centering due to the fixed positioning */
+    min-height: 47px;
+    width: 60%;
+    background-color: #CB9494;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    z-index: 5; /* Ensure it's above other content */
+    margin-top: 5px; /* Margin-top may not be needed anymore */
+}
+
+.pozycja-menu {
+    margin-left: 20px; /* Move text to the right */
+    font-weight: normal;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.pagination-container-szczegoly-lokalu {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: fixed; /* Stays fixed at the bottom of the viewport */
+    bottom: 30px; /* Adjust this value to the height of your footer */
+    width: 100%; /* Spans the entire width of the viewport */
+    background: #f2f2f2;
+    z-index: 100;
+}
+
+.pagination-szczegoly-lokalu {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: absolute; /* This will position your element in relation to the nearest positioned ancestor */
+    bottom: 0; /* This will place it right at the bottom of the nearest positioned ancestor */
+    width: 100%; /* To ensure it spans the entire width of the footer container */
+    background: #f2f2f2;
+}
+
+.pagination-szczegoly-lokalu a { /* This targets all <a> tags inside the pagination */
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 5px; /* Rounded corners for all, we will overwrite for first and last child */
+}
+
+.pagination-szczegoly-lokalu .pagination-strzalka { /* Styling for the arrows */
+    border-radius: 5px; /* Ensure the arrows also have rounded corners */
+}
+
+.pagination-szczegoly-lokalu .szczegoly-lokalu-active { /* Active page styling */
+    background-color: #aa3939;
+    color: white;
+    border: 1px solid #aa3939;
+}
+
+.pagination-szczegoly-lokalu a:hover { /* Hover effect for all pagination links */
+    background-color: #ddd;
+}
+
+.pagination-szczegoly-lokalu .pagination-strzalka:first-child { /* First arrow styling */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination-szczegoly-lokalu .pagination-strzalka:last-child { /* Last arrow styling */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*.footer-szczegoly-lokali {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 5%;
+    position: sticky;
+    top: 0;
+    background: #bf7677;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    margin-top: auto;
+}*/
