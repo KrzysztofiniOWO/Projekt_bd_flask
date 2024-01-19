@@ -1,29 +1,3 @@
-<!--
-<body>
-    <h2>Login</h2>
-    <form method="POST" action="{{ url_for('login') }}">
-        {{ form.hidden_tag() }}
-        <label for="username">Username:</label>
-        {{ form.username() }}
-        <br>
-        <label for="password">Password:</label>
-        {{ form.password() }}
-        <br>
-        <input type="submit" value="Log In">
-    </form>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-</body>
-</html>-->
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -40,14 +14,17 @@
     </header>
 
     <div class="calosc">
-        <form action="">
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.hidden_tag() }}
             <div class="login-box">
                 <div class="login-field">
-                    <input type="text" placeholder="Nazwa użytkownika lub e-mail" required>
+                    {{ form.username.label }}
+                    {{ form.username() }}
                 </div>
 
                 <div class="login-field">
-                    <input type="password" placeholder="Hasło" required>
+                    {{ form.password.label }}
+                    {{ form.password() }}
                 </div>
             </div>
 
@@ -62,4 +39,14 @@
         </form>
     </div>
 
-    <footer
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
