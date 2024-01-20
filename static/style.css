@@ -765,3 +765,47 @@ form h1 { /* nie pamietam co to */
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
     margin-top: auto;
 }*/
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.district-search-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    color: #271212;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    text-align: left;
+}
+
+.search-input::placeholder {
+    text-align: left;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #550000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #d46a6a;
+}

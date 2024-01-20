@@ -116,3 +116,17 @@ def is_phone_number_available(phone_number):
 
 def is_valid_email(email):
     return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
+
+def get_user_data_by_username(username):
+    sql = "SELECT username, password FROM users WHERE username = %s"
+    values = (username,)
+    result = execute_sql_query(sql, values, fetchone=True)
+
+    if result:
+        user_data = {
+            'username': result[0],
+            'password': bytes(result[1])  # Convert to bytes
+        }
+        return user_data
+    else:
+        return None
