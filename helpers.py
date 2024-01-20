@@ -54,38 +54,41 @@ def insert_email_verification(email):
     execute_sql_query(sql, values, commit=True)
 
 def insert_user(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent):
-    sql_insert_email_verification = (
-        "INSERT INTO email_verification (email, verification_code, code_expiry_time, verification_link, link_expiry_time, created_at)"
-        "VALUES (%s, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
-    )
-    values_insert_email_verification = (
-        email,
-    )
 
     sql_insert_user = (
         "INSERT INTO users"
         "(username, email, phone_number, password, authentication_type, terms_of_service_consent, newsletter_consent, location_processing_consent, created_at)"
         "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())"
     )
+
+    sql_insert_email_verification = (
+        "INSERT INTO email_verification (email, verification_code, code_expiry_time, verification_link, link_expiry_time, created_at)"
+        "VALUES (%s, 'dummy_code', NOW(), 'dummy_link', NOW(), NOW())"
+    )
+
     values_insert_user = (
         username, email, phone_number, password,
         authentication_type, terms_of_service_consent,
         newsletter_consent, location_processing_consent
     )
 
+    values_insert_email_verification = (
+        email,
+    )
+
     connection = get_db_connection()
     cursor = connection.cursor()
 
     try:
-        # Wstawienie do tabeli email_verification
-        cursor.execute(sql_insert_email_verification, values_insert_email_verification)
-        connection.commit()
-        print("Email verification inserted successfully")
-
         # Wstawienie do tabeli users
         cursor.execute(sql_insert_user, values_insert_user)
         connection.commit()
         print("User inserted successfully")
+
+        # Wstawienie do tabeli email_verification
+        cursor.execute(sql_insert_email_verification, values_insert_email_verification)
+        connection.commit()
+        print("Email verification inserted successfully")
 
     except Exception as e:
         print(f"Error inserting user: {e}")
