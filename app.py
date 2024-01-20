@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect, url_for, flash, session
+from flask import Flask, render_template, redirect, url_for, flash, session, request
 from forms import RegistrationForm, LoginForm
-from helpers import get_db_connection, execute_sql_query, insert_email_verification, insert_user
-from helpers import is_username_available, is_email_available, is_phone_number_available
+from helpers import execute_sql_query, insert_user, insert_email_verification
+from helpers import is_username_available, is_email_available, is_phone_number_available, get_user_data_by_username
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
@@ -16,20 +16,6 @@ app.config['SESSION_PERMANENT'] = False
 
 bcrypt = Bcrypt(app)
 app.secret_key = 'bardzo_tajny_klucz'
-
-def get_user_data_by_username(username):
-    sql = "SELECT username, password FROM users WHERE username = %s"
-    values = (username,)
-    result = execute_sql_query(sql, values, fetchone=True)
-
-    if result:
-        user_data = {
-            'username': result[0],
-            'password': bytes(result[1])  # Convert to bytes
-        }
-        return user_data
-    else:
-        return None
 
 @app.route('/')
 def index():
@@ -99,6 +85,20 @@ def logout():
 
     flash('You have been logged out.', 'info')
     return redirect(url_for('index'))
+
+@app.route('/search_by_district', methods=['POST'])
+def search_by_district():
+    district_name = request.form.get('district')
+
+    sql = "SELECT local_name FROM local_accounts WHERE district_id IN (SELECT district_id FROM districts WHERE district = %s)"
+    values = (district_name,)
+    local_accounts = execute_sql_query(sql, values)
+
+    return render_template('lokale.html', local_accounts=local_accounts, district_name=district_name)
+
+@app.route('/details/<int:lokal_id>')
+def details(lokal_id):
+    return render_template('details.html', lokal_id=lokal_id)
 
 if __name__ == '__main__':
     app.run(debug=True)

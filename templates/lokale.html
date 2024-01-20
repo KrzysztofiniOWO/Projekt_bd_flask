@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wyniki wyszukiwania lokali -  kebAPPka</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Wyniki wyszukiwania lokali - kebAPPka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header class="lokale_header">
         <span class="lokale_header">kebAPPka</span>
     </header>
 
-    
     <div class="sort-container">
         <div style="flex: 1;"></div> 
         <div style="flex: 1;"></div> 
         <button class="district-change-btn">Zmień dzielnicę</button>
         <div style="flex: 1;"></div> 
-                <div class="sorting-wrapper">
-                    <label for="sorting-options" class="sort-label">Sortuj według:</label>
-                    <select id="sorting-options" class="sorting-options">
-                    <option value="alphabetical">Alfabetycznie</option>
-                    <option value="rating_high_to_low">Ocena: od najwyższej</option>
-                    <option value="rating_low_to_high">Ocena: od najniższej</option>
-                    <option value="nearest">Najbliższe</option>
-                    </select>
-                </div>
-            </div>
-            <input type="search" class="food-search" placeholder="Miejsca i produkty...">
+        <div class="sorting-wrapper">
+            <label for="sorting-options" class="sort-label">Sortuj według:</label>
+            <select id="sorting-options" class="sorting-options">
+                <option value="alphabetical">Alfabetycznie</option>
+                <option value="rating_high_to_low">Ocena: od najwyższej</option>
+                <option value="rating_low_to_high">Ocena: od najniższej</option>
+                <option value="nearest">Najbliższe</option>
+            </select>
+        </div>
+        <input type="search" class="food-search" placeholder="Miejsca i produkty...">
     </div>
-    <div class="search-results-label">Wyniki wyszukiwania dla: <span class="search-query">TUTAJ WYPISYWAC DZIELNICE</span></div>
-        
+    
+    <div class="search-results-label">Wyniki wyszukiwania dla: <span class="search-query">{{ district_name }}</span></div>
+    
     <div class="angled-rectangle-lokale">
         <div class="filtruj-text">
             Filtruj:
         </div>
     </div>
 
-    <div class="konkretny-lokal">
-        <a href="szczegoly_lokalu.html" class="centered-text-lokal">NAZWA LOKALU</a>
-    </div>
+    <!-- Pętla wyświetlająca lokale -->
+    {% for lokal in local_accounts %}
+        <div class="konkretny-lokal">
+            {{ lokal[0] }}
+        </div>
+    {% endfor %}
 
     <div class="pagination-container">
         <div class="pagination">
