@@ -38,13 +38,17 @@
     </div>
 
     <!-- Pętla wyświetlająca lokale -->
-    {% for lokal in local_accounts %}
-        <div class="konkretny-lokal">
-            <p class="local-name">{{ lokal[0] }}</p>
-            <p class="description">{{ lokal[1] }}</p>
-            <p class="rating">Rating: {{ lokal[2] }}</p>
-        </div>
-    {% endfor %}    
+    <div class="search-container">
+        {% for lokal in local_accounts %}
+            <div class="konkretny-lokal">
+                <a href="{{ url_for('details', lokal_name=lokal[0]) }}">
+                    <p class="local-name">{{ lokal[0] }}</p>
+                    <p class="description">{{ lokal[1] }}</p>
+                    <p class="rating">Rating: {{ lokal[2] }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 
     <div class="pagination-container">
         <div class="pagination">
