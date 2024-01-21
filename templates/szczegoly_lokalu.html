@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kebAPPka - wyniki wyszukiwania lokali</title>
+    <title>kebAPPka - Szczegóły Lokalu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header class="lokale_header">
-        <span class="lokale_header">NAZWA LOKALU</span>
+        <span class="lokale_header">{{ lokal_data[0] }}</span>
     </header>
 
     <div class="angled-rectangle-szczegoly">
         <div class="ocena-lokale-szczegoly">
-            Ocena lokalu: WSTAWIC OCENE - GWIAZDKI / LICZBOWO
+            Ocena lokalu: {{ lokal_data[2] }}
         </div>
 
         <div class="promocje-lokale-szczegoly">
@@ -32,7 +32,6 @@
 
     <div class="angled-rectangle-szczegoly2">
         <div class="pozycja-menu">
-            A TU BEDA WYPISYWANE POZYCJE Z MENU
         </div>
     </div>
 
@@ -54,4 +53,3 @@
     </footer> -->
 </body>
 </html>
-

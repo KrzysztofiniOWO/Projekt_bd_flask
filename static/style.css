@@ -809,3 +809,40 @@ form h1 { /* nie pamietam co to */
 .search-button:hover {
     background-color: #d46a6a;
 }
+
+/* Stylowanie kafelków lokalnych */
+.konkretny-lokal {
+    max-width: 200px; /* Dostosuj szerokość kafelka do własnych potrzeb */
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.konkretny-lokal:hover {
+    transform: scale(1.05); /* Drobne powiększenie kafelka po najechaniu myszką */
+}
+
+.local-name {
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap; /* Ogranicza tekst do jednej linii */
+    overflow: hidden; /* Ukrywa nadmiarowy tekst */
+    text-overflow: ellipsis; /* Dodaje trzy kropki na końcu, jeśli tekst jest zbyt długi */
+}
+
+.description {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.rating {
+    font-size: 16px;
+    margin-top: 5px;
+}

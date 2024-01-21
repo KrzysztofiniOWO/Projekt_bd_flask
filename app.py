@@ -96,9 +96,18 @@ def search_by_district():
 
     return render_template('lokale.html', local_accounts=local_accounts, district_name=district_name)
 
-@app.route('/details/<int:lokal_id>')
-def details(lokal_id):
-    return render_template('details.html', lokal_id=lokal_id)
+@app.route('/details/<string:lokal_name>')
+def details(lokal_name):
+    # Pobierz dane o lokalu z bazy danych na podstawie lokal_name
+    sql = "SELECT local_name, description, rating FROM local_accounts WHERE local_name = %s"
+    values = (lokal_name,)
+    lokal_data = execute_sql_query(sql, values, fetchone=True)
+
+    if lokal_data:
+        return render_template('szczegoly_lokalu.html', lokal_data=lokal_data)
+    else:
+        flash('Lokal o podanej nazwie nie istnieje.', 'danger')
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
