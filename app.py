@@ -90,7 +90,7 @@ def logout():
 def search_by_district():
     district_name = request.form.get('district')
 
-    sql = "SELECT local_name FROM local_accounts WHERE district_id IN (SELECT district_id FROM districts WHERE district = %s)"
+    sql = "SELECT local_name, description, rating FROM local_accounts WHERE district_id IN (SELECT district_id FROM districts WHERE district = %s)"
     values = (district_name,)
     local_accounts = execute_sql_query(sql, values)
 
