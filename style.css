@@ -839,3 +839,27 @@ form h1 { /* nie pamietam co to */
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.opinia-uzytkownika {
+    width: 40%; /* Match the width of the angled rectangles */
+    margin: 20px auto; /* Center the form horizontally and add some margin for spacing */
+    text-align: center; /* Center the contents of the form */
+}
+
+.opinia-uzytkownika input[type="text-opinia"] {
+    width: calc(100% - 20px); /* Full width minus some padding */
+    padding: 10px;
+    margin-bottom: 10px; /* Space between the input and the button */
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Example border, style as you like */
+}
+
+.opinia-uzytkownika button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ab3939; /* Example background color, style as you like */
+    color: white;
+    cursor: pointer; /* Changes the cursor to indicate the button is clickable */
+}
+
