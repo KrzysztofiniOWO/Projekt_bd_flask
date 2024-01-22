@@ -453,8 +453,8 @@ form h1 { /* nie pamietam co to */
 .sort-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* This will position the button and sorting options on opposite ends */
-    padding: 20px 10%; /* Adjust padding as needed */
+    justify-content: space-between; 
+    padding: 20px 10%; 
     max-width: 100%;
 }
 
@@ -488,8 +488,6 @@ form h1 { /* nie pamietam co to */
 
 .district-change-btn {
     padding: 8px 16px;
-    /*margin-top: 2px;
-    margin-bottom: 10px;*/
     margin: 0 auto;
 }
 
@@ -534,9 +532,6 @@ form h1 { /* nie pamietam co to */
     flex: 1;
 }
 
-/*.spacer {
-    display: none;
-}*/
 
 .search-results-label {
     text-align: center;
@@ -548,7 +543,7 @@ form h1 { /* nie pamietam co to */
 .angled-rectangle-lokale {
     position: fixed;
     left: 60px;
-    top: 305px; /* Adjust this value to not overlap the header */
+    top: 305px; 
     width: 230px;
     min-height: 400px;
     background: #FFEDED;
@@ -570,8 +565,8 @@ form h1 { /* nie pamietam co to */
 
 .konkretny-lokal {
     position: fixed;
-    top: 305px; /* Adjust so it doesn't overlap with .angled-rectangle-lokale */
-    left: calc(50% - 30%); /* Adjust this value to center the block */
+    top: 305px; 
+    left: calc(50% - 30%); 
     width: 60%;
     height: 100px;
     background-color: #CB9494;
@@ -608,7 +603,6 @@ form h1 { /* nie pamietam co to */
     justify-content: center;
     align-items: center;
     padding: 10px;
-    /*margin-top: 360px;*/
 }
 
 .pagination a {
@@ -648,49 +642,49 @@ form h1 { /* nie pamietam co to */
     background-color: #F5F5F5;
     margin: 30px auto;
     margin-bottom: 10px;
-    position: fixed; /* This will make the rectangle and its contents fixed on the screen */
-    top: 50px; /* Adjust this value so the rectangle appears below the header */
-    left: 50%; /* Center the rectangle */
-    transform: translateX(-50%); /* Adjust horizontal centering due to the fixed positioning */
+    position: fixed; 
+    top: 50px; 
+    left: 50%; 
+    transform: translateX(-50%); 
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-    z-index: 5; /* Make sure it's above other content but below any modals or popups */
+    z-index: 5; 
 }
 
 .ocena-lokale-szczegoly,
 .promocje-lokale-szczegoly,
 .recenzje-lokale-szczegoly {
-    margin-left: 20px; /* Move text to the right */
+    margin-left: 20px; 
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .nasze-menu-lokale-szczegoly {
-    position: fixed; /* Make NASZE MENU fixed */
-    top: 180px; /* Adjust this value so it appears right below the .angled-rectangle-szczegoly */
-    left: 200px; /* Keep your left margin */
+    position: fixed; 
+    top: 180px; 
+    left: 200px; 
     font-weight: bold;
     font-size: 20px;
-    z-index: 5; /* Ensures it stays on top of other content */
+    z-index: 5; 
 }
 
 .angled-rectangle-szczegoly2 {
-    position: fixed; /* Fixed positioning relative to the viewport */
-    top: calc(90px + 100px + 20px); /* Below the first fixed rectangle; adjust this value as needed */
-    left: 50%; /* Center the element */
-    transform: translateX(-50%); /* Adjust for the centering due to the fixed positioning */
+    position: fixed; 
+    top: calc(90px + 100px + 20px); 
+    left: 50%; 
+    transform: translateX(-50%); 
     min-height: 47px;
     width: 60%;
     background-color: #CB9494;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
     border-radius: 10px;
-    z-index: 5; /* Ensure it's above other content */
-    margin-top: 5px; /* Margin-top may not be needed anymore */
+    z-index: 5; 
+    margin-top: 5px; 
 }
 
 .pozycja-menu {
-    margin-left: 20px; /* Move text to the right */
+    margin-left: 20px; 
     font-weight: normal;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -701,9 +695,9 @@ form h1 { /* nie pamietam co to */
     display: flex;
     justify-content: center;
     padding: 10px 0;
-    position: fixed; /* Stays fixed at the bottom of the viewport */
-    bottom: 30px; /* Adjust this value to the height of your footer */
-    width: 100%; /* Spans the entire width of the viewport */
+    position: fixed; 
+    bottom: 30px; 
+    width: 100%; 
     background: #f2f2f2;
     z-index: 100;
 }
@@ -712,56 +706,136 @@ form h1 { /* nie pamietam co to */
     display: flex;
     justify-content: center;
     padding: 20px 0;
-    position: absolute; /* This will position your element in relation to the nearest positioned ancestor */
-    bottom: 0; /* This will place it right at the bottom of the nearest positioned ancestor */
-    width: 100%; /* To ensure it spans the entire width of the footer container */
+    position: absolute; 
+    bottom: 0;
+    width: 100%; 
     background: #f2f2f2;
 }
 
-.pagination-szczegoly-lokalu a { /* This targets all <a> tags inside the pagination */
+.pagination-szczegoly-lokalu a { 
     color: black;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
     margin: 0 4px;
-    border-radius: 5px; /* Rounded corners for all, we will overwrite for first and last child */
+    border-radius: 5px;
 }
 
-.pagination-szczegoly-lokalu .pagination-strzalka { /* Styling for the arrows */
-    border-radius: 5px; /* Ensure the arrows also have rounded corners */
+.pagination-szczegoly-lokalu .pagination-strzalka { 
+    border-radius: 5px; 
 }
 
-.pagination-szczegoly-lokalu .szczegoly-lokalu-active { /* Active page styling */
+.pagination-szczegoly-lokalu .szczegoly-lokalu-active { 
     background-color: #aa3939;
     color: white;
     border: 1px solid #aa3939;
 }
 
-.pagination-szczegoly-lokalu a:hover { /* Hover effect for all pagination links */
+.pagination-szczegoly-lokalu a:hover { 
     background-color: #ddd;
 }
 
-.pagination-szczegoly-lokalu .pagination-strzalka:first-child { /* First arrow styling */
+.pagination-szczegoly-lokalu .pagination-strzalka:first-child { 
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.pagination-szczegoly-lokalu .pagination-strzalka:last-child { /* Last arrow styling */
+.pagination-szczegoly-lokalu .pagination-strzalka:last-child { 
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-/*.footer-szczegoly-lokali {
-    display: flex;
+
+.zrecenzuj-href {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/*                                                           oceny.html                                                              */
+
+.oceny_header {
+    font-family: 'Merienda', cursive;
+    padding: 5px 10%;
+    background-color: #ab3939;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 5%;
-    position: sticky;
-    top: 0;
-    background: #bf7677;
-    border-radius: 30px 30px 0 0;
+    min-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    font-size: 30px;
+    color: #feaaaa;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.angled-rectangle-oceny {
+    min-height: 100px;
+    width: 40%;
+    background-color: #F5F5F5;
+    margin: 30px auto;
+    margin-bottom: 10px;
+    display: block;
+    top: 50px; 
+    left: 40%; 
+    border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-    margin-top: auto;
-}*/
+    z-index: 5; 
+    margin-left: 20%; 
+    margin-right: auto;
+}
+
+.oceny-nazwa-uzytkownika {
+    margin-left: 20px; 
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.oceny-ocena-uzytkownika {
+    margin-left: 20px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.oceny-tresc {
+    margin-left: 20px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.angled-rectangle-oceny2 {
+    min-height: 100px;
+    margin: 30px auto;
+    display: block;
+    top: calc(90px + 100px + 20px); 
+    left: 90%; 
+    width: 40%;
+    background-color: #F5F5F5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    z-index: 5; 
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: auto; 
+    margin-right: 15%;
+}
+
+.oceny-wlasciciel-lokalu {
+    margin-left: 20px; 
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.oceny-odpowiedz-wlasciciela {
+    margin-left: 20px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
