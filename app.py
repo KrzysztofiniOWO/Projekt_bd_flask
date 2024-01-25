@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_DB'] = 'kebAPPka'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 app.config['SECRET_KEY'] = 'bardzo_tajny_klucz'
 app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_PERMANENT'] = True
 
 bcrypt = Bcrypt(app)
 app.secret_key = 'bardzo_tajny_klucz'
@@ -94,7 +94,7 @@ def search_by_district():
     values = (district_name,)
     local_accounts = execute_sql_query(sql, values)
 
-    return render_template('lokale.html', local_accounts=local_accounts, district_name=district_name)
+    return render_template('lokale.html', local_accounts=local_accounts, district_name=district_name, username=session.get('username'))
 
 @app.route('/details/<string:lokal_name>')
 def details(lokal_name):
@@ -104,7 +104,7 @@ def details(lokal_name):
     lokal_data = execute_sql_query(sql, values, fetchone=True)
 
     if lokal_data:
-        return render_template('szczegoly_lokalu.html', lokal_data=lokal_data)
+        return render_template('szczegoly_lokalu.html', lokal_data=lokal_data, username=session.get('username'))
     else:
         flash('Lokal o podanej nazwie nie istnieje.', 'danger')
         return redirect(url_for('index'))

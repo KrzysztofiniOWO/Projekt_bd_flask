@@ -640,8 +640,7 @@ form h1 { /* nie pamietam co to */
     min-height: 100px;
     width: 40%;
     background-color: #F5F5F5;
-    margin: 30px auto;
-    margin-bottom: 10px;
+    margin-top: 100px; /* Przykładowa wartość marginesu na górze */
     position: fixed; 
     top: 50px; 
     left: 50%; 
@@ -667,6 +666,7 @@ form h1 { /* nie pamietam co to */
     font-weight: bold;
     font-size: 20px;
     z-index: 5; 
+    margin-top: 100px;
 }
 
 .angled-rectangle-szczegoly2 {
@@ -680,7 +680,7 @@ form h1 { /* nie pamietam co to */
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
     border-radius: 10px;
     z-index: 5; 
-    margin-top: 5px; 
+    margin-top: 100px; 
 }
 
 .pozycja-menu {
@@ -933,4 +933,13 @@ form h1 { /* nie pamietam co to */
 .rating {
     font-size: 16px;
     margin-top: 5px;
+}
+
+.welcome-message {
+    margin-right: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logout-button {
+    margin-left: 10px;
 }
