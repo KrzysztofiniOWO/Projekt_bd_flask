@@ -840,55 +840,27 @@ form h1 { /* nie pamietam co to */
     margin-bottom: 10px;
 }
 
-/*.footer-szczegoly-lokali {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 5%;
-    position: sticky;
-    top: 0;
-    background: #bf7677;
-    border-radius: 30px 30px 0 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-    margin-top: auto;
-}*/
-
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 0 20px;
+.opinia-uzytkownika {
+    width: 40%; /* Match the width of the angled rectangles */
+    margin: 20px auto; /* Center the form horizontally and add some margin for spacing */
+    text-align: center; /* Center the contents of the form */
 }
 
-.district-search-form {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin: 10px;
-    width: 100%;
+.opinia-uzytkownika input[type="text-opinia"] {
+    width: calc(100% - 20px); /* Full width minus some padding */
+    padding: 10px;
+    margin-bottom: 10px; /* Space between the input and the button */
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Example border, style as you like */
 }
 
-.search-input {
-    flex-grow: 1;
-    color: #271212;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    background: transparent;
-    text-align: left;
-}
-
-.search-input::placeholder {
-    text-align: left;
-}
-
-.search-button {
+.opinia-uzytkownika button {
     padding: 10px 20px;
-    background-color: #550000;
-    color: white;
+    border-radius: 5px;
     border: none;
+    background-color: #ab3939; /* Example background color, style as you like */
+    color: white;
+    cursor: pointer; /* Changes the cursor to indicate the button is clickable */
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
