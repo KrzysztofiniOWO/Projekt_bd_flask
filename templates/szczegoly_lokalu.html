@@ -9,8 +9,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </head>
 <body>
-    <header class="lokale_header">
+    <header>
+        <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="logo">
         <span class="lokale_header">{{ lokal_data[0] }}</span>
+        <div class="button_container">
+            {% if username %}
+                <span class="welcome-message">Witaj, {{ username }}!</span>
+                <form method="post" action="{{ url_for('logout') }}">
+                    <button type="submit" class="logout-button">Wyloguj się</button>
+                </form>
+            {% else %}
+                <a class="cta" href="{{ url_for('login') }}"><button class="log_in">ZALOGUJ SIĘ</button></a>
+                <a class="cta" href="{{ url_for('register') }}"><button class="register">ZAREJESTRUJ SIĘ</button></a>
+            {% endif %}
+        </div>
     </header>
 
     <div class="angled-rectangle-szczegoly">
