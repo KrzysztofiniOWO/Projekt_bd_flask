@@ -37,6 +37,9 @@
                 </div>
             </div>
         </form>
+        <div class="forgot-password-container">
+            <a href="{{ url_for('forgot_password') }}" class="forgot-password-link">Zapomniałem hasła</a>
+        </div>
     </div>
 
     {% with messages = get_flashed_messages() %}

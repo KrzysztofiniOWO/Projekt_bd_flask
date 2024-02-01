@@ -1,19 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, flash, session, request
 from forms import RegistrationForm, LoginForm
-from helpers import execute_sql_query, insert_user, insert_email_verification
-from helpers import is_username_available, is_email_available, is_phone_number_available, get_user_data_by_username
+from helpers import execute_sql_query, insert_user, insert_email_verification, insert_email_verification, get_user_data_by_email_or_username
+from helpers import is_username_available, is_email_available, is_phone_number_available
 from flask_bcrypt import Bcrypt
 from flask import jsonify
+from config import Config  # Dodaj import
 
 app = Flask(__name__)
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-app.config['MYSQL_DATABASE_DB'] = 'kebAPPka'
-app.config['MYSQL_DATABASE_PORT'] = 3306
-app.config['SECRET_KEY'] = 'bardzo_tajny_klucz'
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_PERMANENT'] = True
+app.config.from_object(Config)  # Ustaw konfigurację
 
 bcrypt = Bcrypt(app)
 app.secret_key = 'bardzo_tajny_klucz'
@@ -177,7 +171,29 @@ def add_review():
 
     return redirect(url_for('reviews', lokal_name=lokal_name))
 
+@app.route('/forgot_password', methods=['GET'])
+def show_forgot_password_page():
+    return render_template('zapomnialem_hasla.html', success=None)
 
+@app.route('/forgot_password', methods=['POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email_or_username = request.form.get('email')
+
+        # Sprawdź, czy email lub nazwa użytkownika istnieje w bazie danych
+        user_data = get_user_data_by_email_or_username(email_or_username)
+
+        if user_data:
+            email = user_data['email']
+
+            # Wygeneruj nowy link weryfikacyjny i wstaw go do tabeli email_verification
+            insert_email_verification(email)
+
+            return render_template('zapomnialem_hasla.html', success=True)
+        else:
+            return render_template('zapomnialem_hasla.html', success=False)
+
+    return redirect(url_for('show_forgot_password_page'))
 
 if __name__ == '__main__':
     app.run(debug=True)
