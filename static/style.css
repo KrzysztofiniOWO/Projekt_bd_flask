@@ -411,6 +411,7 @@ form h1 { /* nie pamietam co to */
     gap: 7px; 
     width: 80%;
     margin: auto;
+    min-width: 400px;
 }
 
 .login-field input {
@@ -586,23 +587,75 @@ form h1 { /* nie pamietam co to */
     text-decoration: none;
 }
 
+.page-content {
+    text-align: center; /* Jeśli używasz dodatkowego kontenera dla treści, dostosuj styl tutaj */
+}
+
 .pagination-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Dodaj flex-direction: column; aby umieścić elementy jeden pod drugim */
+    align-items: center;
     padding: 20px 0;
-    position: fixed;
     background: #f2f2f2;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    margin-top: 20px; /* Dodatkowy margines od góry dla lepszego oddzielenia od treści */
 }
 
 .pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    gap: 10px;
+}
+
+.pagination li {
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+/* Dodatkowy styl dla wyjaśnienia */
+.page-link {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.page-link:hover {
+    background-color: #ddd;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination li {
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+/* Dodatkowy styl dla wyjaśnienia */
+.page-link {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.page-link:hover {
+    background-color: #ddd;
 }
 
 .pagination a {
@@ -860,7 +913,7 @@ form h1 { /* nie pamietam co to */
     border: none;
     background-color: #ab3939; /* Example background color, style as you like */
     color: white;
-    cursor: pointer; /* Changes the cursor to indicate the button is clickable */
+    cursor: pointer;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
@@ -914,4 +967,38 @@ form h1 { /* nie pamietam co to */
 
 .logout-button {
     margin-left: 10px;
+}
+
+.district-search-form {
+    display: flex;
+    align-items: center;
+}
+
+.district-search-form input {
+    margin-right: 10px; /* Dodaj odstęp między polem tekstowym a przyciskiem */
+}
+
+.district-search-form button {
+    background-color: #ab3939;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.banan {
+    width: 100%;
+    min-width: 300px;
+    box-sizing: border-box;
+}
+
+.forgot-password-link {
+    margin-top: 20px;
+    text-align: center;
 }
