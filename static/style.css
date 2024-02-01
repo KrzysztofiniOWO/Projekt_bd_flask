@@ -840,97 +840,25 @@ form h1 { /* nie pamietam co to */
     margin-bottom: 10px;
 }
 
-/*.footer-szczegoly-lokali {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 5%;
-    position: sticky;
-    top: 0;
-    background: #bf7677;
-    border-radius: 30px 30px 0 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-    margin-top: auto;
-}*/
-
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 0 20px;
+.opinia-uzytkownika {
+    width: 40%; /* Match the width of the angled rectangles */
+    margin: 20px auto; /* Center the form horizontally and add some margin for spacing */
+    text-align: center; /* Center the contents of the form */
 }
 
-.district-search-form {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin: 10px;
-    width: 100%;
-}
-
-.search-input {
-    flex-grow: 1;
-    color: #271212;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    background: transparent;
-    text-align: left;
-}
-
-.search-input::placeholder {
-    text-align: left;
-}
-
-.search-button {
-    padding: 10px 20px;
-    background-color: #550000;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.search-button:hover {
-    background-color: #d46a6a;
-}
-
-/* Stylowanie kafelków lokalnych */
-.konkretny-lokal {
-    max-width: 200px; /* Dostosuj szerokość kafelka do własnych potrzeb */
+.opinia-uzytkownika input[type="text-opinia"] {
+    width: calc(100% - 20px); /* Full width minus some padding */
     padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    margin-bottom: 10px; /* Space between the input and the button */
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Example border, style as you like */
 }
 
-.konkretny-lokal:hover {
-    transform: scale(1.05); /* Drobne powiększenie kafelka po najechaniu myszką */
-}
-
-.local-name {
-    font-size: 18px;
-    font-weight: bold;
-    white-space: nowrap; /* Ogranicza tekst do jednej linii */
-    overflow: hidden; /* Ukrywa nadmiarowy tekst */
-    text-overflow: ellipsis; /* Dodaje trzy kropki na końcu, jeśli tekst jest zbyt długi */
-}
-
-.description {
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.rating {
-    font-size: 16px;
-    margin-top: 5px;
+.opinia-uzytkownika button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ab3939; /* Example background color, style as you like */
+    color: white;
+    cursor: pointer; /* Changes the cursor to indicate the button is clickable */
 }

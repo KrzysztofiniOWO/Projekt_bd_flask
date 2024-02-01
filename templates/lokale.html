@@ -6,6 +6,9 @@
     <title>Wyniki wyszukiwania lokali - kebAPPka</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </head>
 <body>
     <header class="lokale_header">
@@ -31,24 +34,39 @@
     
     <div class="search-results-label">Wyniki wyszukiwania dla: <span class="search-query">{{ district_name }}</span></div>
     
-    <div class="angled-rectangle-lokale">
-        <div class="filtruj-text">
-            Filtruj:
+    <div class="flex justify-center text-center">
+        <div class="grid grid-cols-2 gap-4 max-w-lg">
+            <div class="bg-red-100 border rounded-lg border-black text-center p-4">
+                <!-- Panel for filtering -->
+                <div>
+                    <h1 class="text-lg">Filter:</h1>
+                </div>
+            </div>
+    
+            <div class="bg-red-100 border rounded-lg border-black text-center p-4">
+                <!-- Loop displaying locales -->
+                <div>
+                    <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
+                        {% for local in local_accounts %}
+                        <a href="{{ url_for('details', lokal_name=local[0]) }}">
+                            <div class="flex flex-col pb-3 bg-red-300 border rounded-lg border-black mb-2">
+                                <dt class="text-lg mb-1 font-semibold text-black md:text-lg">{{ local[0] }}</dt>
+                                <dd class="text-lg text-gray-500">{{ local[1] }}</dd>
+                                <dd class="text-lg text-gray-500">Ocena: {{ local[2] }}/5</dd>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </dl>
+                </div>
+            </div>
         </div>
     </div>
+    
 
-    <!-- Pętla wyświetlająca lokale -->
-    <div class="search-container">
-        {% for lokal in local_accounts %}
-            <div class="konkretny-lokal">
-                <a href="{{ url_for('details', lokal_name=lokal[0]) }}">
-                    <p class="local-name">{{ lokal[0] }}</p>
-                    <p class="description">{{ lokal[1] }}</p>
-                    <p class="rating">Rating: {{ lokal[2] }}</p>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+
+    {% if not local_accounts %}
+        <div class="no-results">Brak wyników wyszukiwania</div>
+    {% endif %}
 
     <div class="pagination-container">
         <div class="pagination">

@@ -3,57 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <title>Oceny lokalu -  kebAPPka</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
 </head>
 <body>
     <header class="oceny_header">
-        <span class="oceny_header">NAZWA LOKALU - OCENY</span>
+        <span class="oceny_header">{{ lokal_name  }} - OCENY</span>
     </header>
 
+    {% if not accept_review == False %}
+    <div class="opinia-uzytkownika">
+        <form action="{{ url_for('add_review', lokal_name=lokal_name) }}" method="POST">
+            <input type="text" class="mb-2 border rounded-lg border-gray-300" id="title" name="title" placeholder="Wpisz tytuł opinii tutaj" required>
+            <input type="number" class="mb-2 border rounded-lg border-gray-300" id="rating" name="rating" placeholder="Jak oceniasz ten lokal [1-5]" required>
+            <textarea type="text" class="block mb-2 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " id="content" name="content" placeholder="Wpisz swoją opinię tutaj" required></textarea>
+            <button type="submit">Wyślij</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% for review in reviews %}
     <!-- TUTAJ JEST POLE DLA UZYTKOWNIKA -->
     <div class="angled-rectangle-oceny">
         <div class="oceny-nazwa-uzytkownika">
-            NAZWA UŻYTKOWNIKA
+            <!-- Nazwa użytkownika -->
+            {{ review [0] }} 
         </div>
 
         <div class="oceny-ocena-uzytkownika">
-            OCENA JAKA WYSTAWIL
+           Wystawiona ocena: {{ review [2] }}/5
         </div>
 
         <div class="oceny-tresc">
-            TRESC OPINII
-        </div>
-
-    </div>
-
-    <!-- TUTAJ JEST POLE DLA ODPOWIEDZI WLASCICIELA -->
-    <div class="angled-rectangle-oceny2">
-        <div class="oceny-wlasciciel-lokalu">
-            WLASCICIEL LOKALU
-        </div>
-
-        <div class="oceny-odpowiedz-wlasciciela">
-            TRESC ODPOWIEDZI
-        </div>
-
-    </div>
-    <!-- TUTAJ DLA TESTU POWTORZYLAM KAFELEK DLA UZYTKOWNIKA ZEBY SPRAWDZIC CZY WYSWIETLA SIE NIECO POZNIEJ OD WCZESNIEJSZYCH DWOCH -->
-    <div class="angled-rectangle-oceny">
-        <div class="oceny-nazwa-uzytkownika">
-            NAZWA UŻYTKOWNIKA
-        </div>
-
-        <div class="oceny-ocena-uzytkownika">
-            OCENA JAKA WYSTAWIL
+            <!-- Treść recenzji -->
+            {{ review [1] }}
         </div>
 
         <div class="oceny-tresc">
-            TRESC OPINII
+            <!-- Likes -->
+            Przydatne: {{ review [3] }}
+        </div>
+
+        <div class="oceny-tresc">
+            <!-- Dislikes -->
+            Nieprzydatne: {{ review [4] }}
         </div>
 
     </div>
-    
+
+
+    {% endfor %}
     
     
 </body>
