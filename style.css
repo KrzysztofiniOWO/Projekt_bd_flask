@@ -898,3 +898,51 @@ form h1 { /* nie pamietam co to */
     margin-left: auto;
     margin-right: 1px;
 }
+
+
+/*                                                             forgot_password.html                                     */
+.forgot_header {
+    font-family: 'Merienda', cursive;
+    padding: 5px 10%;
+    background-color: #ab3939;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    margin-left: 5px;
+    font-size: 24px;
+    color: #feaaaa;
+    font-family: 'Merienda', cursive;
+    text-shadow: 
+        -1px -1px 0px #fff,  
+         1px -1px 0px #fff,
+        -1px  1px 0px #fff,
+         1px  1px 0px #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.forgot-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px; 
+    width: 100%;
+    margin: auto;
+}
+
+.forgot-field input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    margin-top: 2px;
+    font-size: 15px;
+}
+
+.forgot-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f2f2f2 url('tlo-kebaby.png') no-repeat center center;
+    background-size: cover;
+}
