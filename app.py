@@ -195,5 +195,19 @@ def forgot_password():
 
     return redirect(url_for('show_forgot_password_page'))
 
+def get_user_data_by_username(username):
+    sql = "SELECT username, password FROM users WHERE username = %s"
+    values = (username,)
+    result = execute_sql_query(sql, values, fetchone=True)
+
+    if result:
+        user_data = {
+            'username': result[0],
+            'password': bytes(result[1])  # Convert to bytes
+        }
+        return user_data
+    else:
+        return None
+
 if __name__ == '__main__':
     app.run(debug=True)
